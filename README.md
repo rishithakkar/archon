@@ -12,6 +12,23 @@ Turning a product idea into working code today involves juggling multiple tools 
 - **No guardrails** — AI can generate code without structure, skipping architecture and testing
 - **Manual orchestration** — copy-pasting outputs between tools, managing files, running CLI commands
 
+## Screenshots
+
+### Idea Input
+![Idea Input](docs/screenshots/01-idea-input.png)
+
+### Brainstorm (Versioned)
+![Brainstorm](docs/screenshots/02-brainstorm.png)
+
+### Architecture (Interactive Sections)
+![Architecture](docs/screenshots/03-architecture.png)
+
+### Code Generation (Live Terminal)
+![Code Generation](docs/screenshots/04-code-generation.png)
+
+### Testing
+![Testing](docs/screenshots/05-testing.png)
+
 ## How It Works
 
 ```
