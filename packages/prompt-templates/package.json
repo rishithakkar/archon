@@ -1,5 +1,5 @@
 {
-  "name": "@flowforge/prompt-templates",
+  "name": "@archon/prompt-templates",
   "version": "0.1.0",
   "private": true,
   "main": "./src/index.ts",

@@ -2,8 +2,8 @@ import { ipcMain, BrowserWindow } from 'electron'
 import * as sessionStore from './session-store'
 import * as ptyManager from './pty-manager'
 import * as claudeBridge from './claude-bridge'
-import type { Stage } from '@flowforge/shared-types'
-import type { Artifact } from '@flowforge/shared-types'
+import type { Stage } from '@archon/shared-types'
+import type { Artifact } from '@archon/shared-types'
 
 export function registerIpcHandlers(): void {
   // Session handlers

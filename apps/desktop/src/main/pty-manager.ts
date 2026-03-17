@@ -1,7 +1,7 @@
 import { spawn, ChildProcess, execSync } from 'child_process'
 import { BrowserWindow } from 'electron'
 import { join } from 'path'
-import type { PtyMode } from '@flowforge/shared-types'
+import type { PtyMode } from '@archon/shared-types'
 
 let activeProcess: ChildProcess | null = null
 let currentMode: PtyMode = 'normal'

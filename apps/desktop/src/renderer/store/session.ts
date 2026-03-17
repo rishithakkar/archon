@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { Stage } from '@flowforge/shared-types'
-import type { SessionState, Checkpoint } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
+import type { SessionState, Checkpoint } from '@archon/shared-types'
 
 const STAGE_ORDER = Object.values(Stage)
 

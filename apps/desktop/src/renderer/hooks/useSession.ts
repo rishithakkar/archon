@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useSessionStore } from '../store/session'
-import type { Stage } from '@flowforge/shared-types'
+import type { Stage } from '@archon/shared-types'
 
 export function useSession() {
   const store = useSessionStore()
@@ -9,7 +9,7 @@ export function useSession() {
     async (projectName: string, ideaText: string, stackPrefs: string[], projectPath: string) => {
       store.setLoading(true)
       try {
-        const session = await window.flowforge.session.create({
+        const session = await window.archon.session.create({
           projectName,
           ideaText,
           stackPrefs,
@@ -28,7 +28,7 @@ export function useSession() {
     async (sessionId: string) => {
       store.setLoading(true)
       try {
-        const session = await window.flowforge.session.load(sessionId)
+        const session = await window.archon.session.load(sessionId)
         if (session) {
           store.setSession(session)
         }
@@ -41,14 +41,14 @@ export function useSession() {
   )
 
   const listSessions = useCallback(async () => {
-    return window.flowforge.session.list()
+    return window.archon.session.list()
   }, [])
 
   const advanceStage = useCallback(
     async (stage: Stage) => {
       const sessionId = useSessionStore.getState().id
       if (sessionId) {
-        await window.flowforge.session.updateStage(sessionId, stage)
+        await window.archon.session.updateStage(sessionId, stage)
       }
       store.setStage(stage)
     },

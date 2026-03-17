@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import { marked } from 'marked'
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSession } from '../../hooks/useSession'
 import { useSessionStore } from '../../store/session'
 
@@ -15,7 +15,7 @@ export function CodeGeneration() {
 
   // Listen for auto-detected project path from Claude's file operations
   useEffect(() => {
-    const unsubscribe = window.flowforge.onProjectPathDetected((path: string) => {
+    const unsubscribe = window.archon.onProjectPathDetected((path: string) => {
       setGeneratedProjectPath(path)
     })
     return unsubscribe
@@ -46,7 +46,7 @@ export function CodeGeneration() {
         'IMPLEMENTATION PLAN — Execute every step below:',
         planMd || '(no plan provided)'
       ].join('\n')
-      await window.flowforge.pty.spawnWithPrompt(projectPath, 'auto', prompt)
+      await window.archon.pty.spawnWithPrompt(projectPath, 'auto', prompt)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start Claude CLI')
       setMode('idle')
@@ -56,12 +56,12 @@ export function CodeGeneration() {
   }
 
   const handleStop = async (): Promise<void> => {
-    await window.flowforge.pty.kill()
+    await window.archon.pty.kill()
     setMode('done')
   }
 
   const handleAdvance = async (): Promise<void> => {
-    await window.flowforge.pty.kill()
+    await window.archon.pty.kill()
     await advanceStage(Stage.Testing)
   }
 

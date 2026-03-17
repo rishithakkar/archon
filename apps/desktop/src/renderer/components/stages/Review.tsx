@@ -29,7 +29,7 @@ export function Review() {
       return
     }
     try {
-      await window.flowforge.pty.spawnShell(effectiveDir, command)
+      await window.archon.pty.spawnShell(effectiveDir, command)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to run command')
     }
@@ -52,7 +52,7 @@ export function Review() {
 5. Missing tests or edge cases
 
 Provide a summary of findings and suggest improvements. Do NOT make any changes — just report your findings.`
-      await window.flowforge.pty.spawnWithPrompt(effectiveDir, 'plan', prompt)
+      await window.archon.pty.spawnWithPrompt(effectiveDir, 'plan', prompt)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start Claude CLI')
       setMode('idle')
@@ -68,7 +68,7 @@ Provide a summary of findings and suggest improvements. Do NOT make any changes 
   }
 
   const handleStop = async (): Promise<void> => {
-    await window.flowforge.pty.kill()
+    await window.archon.pty.kill()
     setMode('done')
   }
 
@@ -176,7 +176,7 @@ Provide a summary of findings and suggest improvements. Do NOT make any changes 
             type="text"
             value={commitMessage}
             onChange={(e) => setCommitMessage(e.target.value)}
-            placeholder="feat: initial implementation from FlowForge"
+            placeholder="feat: initial implementation from Archon"
             className="flex-1 rounded bg-gray-800 px-3 py-2 text-sm text-gray-200 placeholder-gray-600 outline-none focus:ring-1 focus:ring-purple-500"
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleCommit()

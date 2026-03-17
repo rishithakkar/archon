@@ -1,4 +1,4 @@
-# FlowForge — Idea-to-Product Orchestrator
+# Archon — Idea-to-Product Orchestrator
 
 A desktop app that wraps Claude Code in a step-by-step visual wizard.
 Input a product idea and get a fully scaffolded, tested codebase — with human-in-the-loop checkpoints at every stage.
@@ -62,8 +62,8 @@ Idea Input → Brainstorm → Architecture → Code Generation → Testing → R
 ## Quick Start
 
 ```bash
-git clone https://github.com/rishithakkar/flowforge.git
-cd flowforge
+git clone https://github.com/rishithakkar/archon.git
+cd archon
 npm install
 
 # Set your Anthropic API key

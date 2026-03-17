@@ -1,7 +1,7 @@
-import type { FlowforgeAPI } from '../preload/index'
+import type { ArchonAPI } from '../preload/index'
 
 declare global {
   interface Window {
-    flowforge: FlowforgeAPI
+    archon: ArchonAPI
   }
 }

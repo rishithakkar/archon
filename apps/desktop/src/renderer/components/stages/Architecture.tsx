@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { marked } from 'marked'
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSession } from '../../hooks/useSession'
 import { useClaudeBridge } from '../../hooks/useClaudeBridge'
 import { useSessionStore } from '../../store/session'
@@ -189,7 +189,7 @@ export function Architecture() {
   useEffect(() => {
     const sessionId = useSessionStore.getState().id
     if (sessionId) {
-      window.flowforge.artifact.load(sessionId, 'architecture-versions' as never).then((saved) => {
+      window.archon.artifact.load(sessionId, 'architecture-versions' as never).then((saved) => {
         if (saved) {
           try {
             const parsed = JSON.parse(saved) as ArchVersion[]
@@ -225,9 +225,9 @@ export function Architecture() {
   const persistVersions = useCallback((vers: ArchVersion[]) => {
     const sessionId = useSessionStore.getState().id
     if (sessionId) {
-      window.flowforge.artifact.save(sessionId, 'architecture-versions' as never, JSON.stringify(vers))
+      window.archon.artifact.save(sessionId, 'architecture-versions' as never, JSON.stringify(vers))
       if (vers.length > 0) {
-        window.flowforge.artifact.save(sessionId, 'architecture', vers[vers.length - 1].content)
+        window.archon.artifact.save(sessionId, 'architecture', vers[vers.length - 1].content)
       }
     }
   }, [])
@@ -259,7 +259,7 @@ export function Architecture() {
 
     let accumulatedContent = ''
 
-    const unsubscribe = window.flowforge.onArchitectureChunk((chunk) => {
+    const unsubscribe = window.archon.onArchitectureChunk((chunk) => {
       if (chunk.done) {
         const finalContent = accumulatedContent
         if (finalContent) {
@@ -286,7 +286,7 @@ export function Architecture() {
     })
 
     try {
-      await window.flowforge.claude.refineArchitecture(
+      await window.archon.claude.refineArchitecture(
         activeVersion.content,
         feedback,
         sectionName

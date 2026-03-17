@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { marked } from 'marked'
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSession } from '../../hooks/useSession'
 import { useClaudeBridge } from '../../hooks/useClaudeBridge'
 import { useSessionStore } from '../../store/session'
@@ -29,7 +29,7 @@ export function Brainstorm() {
   useEffect(() => {
     const sessionId = useSessionStore.getState().id
     if (sessionId) {
-      window.flowforge.artifact.load(sessionId, 'brainstorm-versions').then((saved) => {
+      window.archon.artifact.load(sessionId, 'brainstorm-versions').then((saved) => {
         if (saved) {
           try {
             const parsed = JSON.parse(saved) as BrainstormVersion[]
@@ -67,10 +67,10 @@ export function Brainstorm() {
   const persistVersions = useCallback((vers: BrainstormVersion[]) => {
     const sessionId = useSessionStore.getState().id
     if (sessionId) {
-      window.flowforge.artifact.save(sessionId, 'brainstorm-versions' as never, JSON.stringify(vers))
+      window.archon.artifact.save(sessionId, 'brainstorm-versions' as never, JSON.stringify(vers))
       // Also save the active version as the main brainstorm artifact
       if (vers.length > 0) {
-        window.flowforge.artifact.save(sessionId, 'brainstorm', vers[vers.length - 1].content)
+        window.archon.artifact.save(sessionId, 'brainstorm', vers[vers.length - 1].content)
       }
     }
   }, [])
@@ -99,7 +99,7 @@ export function Brainstorm() {
 
     let accumulatedContent = ''
 
-    const unsubscribe = window.flowforge.onBrainstormChunk((chunk) => {
+    const unsubscribe = window.archon.onBrainstormChunk((chunk) => {
       if (chunk.done) {
         const finalContent = accumulatedContent
         if (finalContent) {
@@ -125,7 +125,7 @@ export function Brainstorm() {
     })
 
     try {
-      await window.flowforge.claude.refineBrainstorm(
+      await window.archon.claude.refineBrainstorm(
         activeVersion.content,
         feedback,
         ideaText

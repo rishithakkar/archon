@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import type { Stage } from '@flowforge/shared-types'
+import type { Stage } from '@archon/shared-types'
 
 interface SessionSummary {
   id: string
@@ -18,7 +18,7 @@ export function SessionPicker({ onResume, onNewSession }: SessionPickerProps) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    window.flowforge.session.list().then((list) => {
+    window.archon.session.list().then((list) => {
       setSessions(list)
       setLoading(false)
     })

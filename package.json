@@ -1,5 +1,5 @@
 {
-  "name": "flowforge",
+  "name": "archon",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @flowforge/desktop",
+    "dev": "npm run dev -w @archon/desktop",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",

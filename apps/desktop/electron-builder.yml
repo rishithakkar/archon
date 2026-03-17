@@ -1,5 +1,5 @@
-appId: com.flowforge.app
-productName: FlowForge
+appId: com.archon.app
+productName: Archon
 directories:
   buildResources: build
   output: dist
@@ -19,11 +19,11 @@ win:
     - target: nsis
       arch:
         - x64
-  executableName: FlowForge
+  executableName: Archon
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
-  shortcutName: FlowForge
-  uninstallDisplayName: FlowForge
+  shortcutName: Archon
+  uninstallDisplayName: Archon
   deleteAppDataOnUninstall: false
 mac:
   target:
@@ -39,11 +39,11 @@ linux:
     - target: AppImage
       arch:
         - x64
-  maintainer: flowforge
+  maintainer: archon
   category: Development
 appImage:
   artifactName: ${name}-${version}.${ext}
 publish:
   provider: github
-  owner: flowforge
-  repo: flowforge
+  owner: archon
+  repo: archon

@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import type { SessionState, Stage, PtyMode, Artifact } from '@flowforge/shared-types'
+import type { SessionState, Stage, PtyMode, Artifact } from '@archon/shared-types'
 
 const api = {
   session: {
@@ -96,6 +96,6 @@ const api = {
   }
 }
 
-contextBridge.exposeInMainWorld('flowforge', api)
+contextBridge.exposeInMainWorld('archon', api)
 
-export type FlowforgeAPI = typeof api
+export type ArchonAPI = typeof api

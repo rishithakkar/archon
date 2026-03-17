@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import type { Checkpoint } from '@flowforge/shared-types'
+import type { Checkpoint } from '@archon/shared-types'
 
 interface HumanGateProps {
   checkpoint: Checkpoint

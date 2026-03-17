@@ -1,5 +1,5 @@
 {
-  "name": "@flowforge/desktop",
+  "name": "@archon/desktop",
   "version": "0.1.0",
   "private": true,
   "main": "./out/main/index.js",
@@ -13,8 +13,8 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.79.0",
     "@electron-toolkit/utils": "^3.0.0",
-    "@flowforge/prompt-templates": "*",
-    "@flowforge/shared-types": "*",
+    "@archon/prompt-templates": "*",
+    "@archon/shared-types": "*",
     "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",

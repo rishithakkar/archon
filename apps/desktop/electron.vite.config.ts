@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin({ exclude: ['@flowforge/shared-types', '@flowforge/prompt-templates'] })],
+    plugins: [externalizeDepsPlugin({ exclude: ['@archon/shared-types', '@archon/prompt-templates'] })],
     build: {
       outDir: 'out/main',
       rollupOptions: {
@@ -15,7 +15,7 @@ export default defineConfig({
     }
   },
   preload: {
-    plugins: [externalizeDepsPlugin({ exclude: ['@flowforge/shared-types'] })],
+    plugins: [externalizeDepsPlugin({ exclude: ['@archon/shared-types'] })],
     build: {
       outDir: 'out/preload',
       rollupOptions: {

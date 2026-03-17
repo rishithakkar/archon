@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSession } from '../../hooks/useSession'
 import { useClaudeBridge } from '../../hooks/useClaudeBridge'
 

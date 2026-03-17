@@ -37,7 +37,7 @@ export function useTerminal(containerRef: React.RefObject<HTMLDivElement | null>
 
     // Forward keyboard input to PTY
     terminal.onData((data) => {
-      window.flowforge.pty.write(data)
+      window.archon.pty.write(data)
     })
 
     // Handle copy with Ctrl+C / Cmd+C when there's a selection
@@ -53,7 +53,7 @@ export function useTerminal(containerRef: React.RefObject<HTMLDivElement | null>
       // Ctrl+V or Cmd+V = paste
       if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
         navigator.clipboard.readText().then((text) => {
-          window.flowforge.pty.write(text)
+          window.archon.pty.write(text)
         })
         return false
       }
@@ -66,7 +66,7 @@ export function useTerminal(containerRef: React.RefObject<HTMLDivElement | null>
     })
 
     // Receive PTY output
-    const unsubscribe = window.flowforge.onTerminalData((data) => {
+    const unsubscribe = window.archon.onTerminalData((data) => {
       terminal.write(data)
     })
 
@@ -86,7 +86,7 @@ export function useTerminal(containerRef: React.RefObject<HTMLDivElement | null>
 
   const write = useCallback((data: string) => {
     // Write to both PTY and terminal display
-    window.flowforge.pty.write(data)
+    window.archon.pty.write(data)
   }, [])
 
   const fit = useCallback(() => {

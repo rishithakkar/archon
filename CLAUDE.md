@@ -1,4 +1,4 @@
-# FlowForge — Idea-to-Product Orchestrator
+# Archon — Idea-to-Product Orchestrator
 
 ## What this is
 A desktop app (Electron + React + TypeScript) that wraps Claude Code in a
@@ -18,7 +18,7 @@ live terminal panel and human-in-the-loop checkpoints at each stage.
 
 ## Monorepo structure
 ```
-flowforge/
+archon/
 ├── apps/
 │   ├── desktop/          # Electron app
 │   │   ├── src/

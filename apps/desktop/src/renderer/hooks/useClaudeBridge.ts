@@ -9,13 +9,13 @@ export function useClaudeBridge() {
       store.setLoading(true)
       store.setStreaming('')
 
-      const unsubscribe = window.flowforge.onBrainstormChunk((chunk) => {
+      const unsubscribe = window.archon.onBrainstormChunk((chunk) => {
         if (chunk.done) {
           store.setLoading(false)
           const state = useSessionStore.getState()
           store.updateBrainstorm(state.streamingContent)
           if (state.id) {
-            window.flowforge.artifact.save(state.id, 'brainstorm', state.streamingContent)
+            window.archon.artifact.save(state.id, 'brainstorm', state.streamingContent)
           }
         } else {
           store.appendStreaming(chunk.content)
@@ -23,7 +23,7 @@ export function useClaudeBridge() {
       })
 
       try {
-        await window.flowforge.claude.brainstorm(ideaText, stackPrefs)
+        await window.archon.claude.brainstorm(ideaText, stackPrefs)
       } catch (err) {
         console.error('Brainstorm API call failed:', err)
         store.setLoading(false)
@@ -32,7 +32,7 @@ export function useClaudeBridge() {
         if (state.streamingContent) {
           store.updateBrainstorm(state.streamingContent)
           if (state.id) {
-            window.flowforge.artifact.save(state.id, 'brainstorm', state.streamingContent)
+            window.archon.artifact.save(state.id, 'brainstorm', state.streamingContent)
           }
         }
         store.setError(err instanceof Error ? err.message : 'Brainstorm failed. You can retry.')
@@ -48,11 +48,11 @@ export function useClaudeBridge() {
       store.setLoading(true)
       store.setError(null)
       try {
-        const result = await window.flowforge.claude.generateArchitecture(brainstormMd, stackPrefs)
+        const result = await window.archon.claude.generateArchitecture(brainstormMd, stackPrefs)
         store.updateArchitecture(result)
         const sessionId = useSessionStore.getState().id
         if (sessionId) {
-          await window.flowforge.artifact.save(sessionId, 'architecture', result)
+          await window.archon.artifact.save(sessionId, 'architecture', result)
         }
         return result
       } catch (err) {
@@ -71,11 +71,11 @@ export function useClaudeBridge() {
       store.setLoading(true)
       store.setError(null)
       try {
-        const result = await window.flowforge.claude.generateClaudeMd(architectureMd, stack)
+        const result = await window.archon.claude.generateClaudeMd(architectureMd, stack)
         store.updateClaudeMd(result)
         const sessionId = useSessionStore.getState().id
         if (sessionId) {
-          await window.flowforge.artifact.save(sessionId, 'claude-md', result)
+          await window.archon.artifact.save(sessionId, 'claude-md', result)
         }
         return result
       } catch (err) {
@@ -94,11 +94,11 @@ export function useClaudeBridge() {
       store.setLoading(true)
       store.setError(null)
       try {
-        const result = await window.flowforge.claude.generatePlan(claudeMd, architectureMd)
+        const result = await window.archon.claude.generatePlan(claudeMd, architectureMd)
         store.updatePlan(result)
         const sessionId = useSessionStore.getState().id
         if (sessionId) {
-          await window.flowforge.artifact.save(sessionId, 'plan', result)
+          await window.archon.artifact.save(sessionId, 'plan', result)
         }
         return result
       } catch (err) {

@@ -1,4 +1,4 @@
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSessionStore } from '../../store/session'
 
 const STAGES: { stage: Stage; label: string; number: number }[] = [

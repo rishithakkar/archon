@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Stage } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
 import { useSession } from '../../hooks/useSession'
 import { useSessionStore } from '../../store/session'
 
@@ -35,7 +35,7 @@ export function Testing() {
     setError(null)
     try {
       setMode('manual')
-      await window.flowforge.pty.spawnShell(effectiveDir, testCommand.trim())
+      await window.archon.pty.spawnShell(effectiveDir, testCommand.trim())
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start process')
       setMode('idle')
@@ -55,7 +55,7 @@ export function Testing() {
     try {
       setMode('claude')
       const prompt = `The project is located at "${effectiveDir}". Run the test suite using "${testCommand.trim()}". If any tests fail, analyze the failures and fix the code. Keep running tests until they all pass or you've made 3 fix attempts. Report the final status.`
-      await window.flowforge.pty.spawnWithPrompt(effectiveDir, 'auto', prompt)
+      await window.archon.pty.spawnWithPrompt(effectiveDir, 'auto', prompt)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start Claude CLI')
       setMode('idle')
@@ -65,12 +65,12 @@ export function Testing() {
   }
 
   const handleStop = async (): Promise<void> => {
-    await window.flowforge.pty.kill()
+    await window.archon.pty.kill()
     setMode('done')
   }
 
   const handleAdvance = async (): Promise<void> => {
-    await window.flowforge.pty.kill()
+    await window.archon.pty.kill()
     await advanceStage(Stage.Review)
   }
 

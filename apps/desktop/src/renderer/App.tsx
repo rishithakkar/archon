@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Stage } from '@flowforge/shared-types'
-import type { Checkpoint } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
+import type { Checkpoint } from '@archon/shared-types'
 import { useSessionStore } from './store/session'
 import { TopBar } from './components/layout/TopBar'
 import { Sidebar } from './components/layout/Sidebar'
@@ -51,7 +51,7 @@ function App(): JSX.Element {
 
   // On startup, check if there are existing sessions to resume
   useEffect(() => {
-    window.flowforge.session.list().then((sessions) => {
+    window.archon.session.list().then((sessions) => {
       if (sessions.length > 0) {
         setShowPicker(true)
       } else {
@@ -61,7 +61,7 @@ function App(): JSX.Element {
   }, [])
 
   const handleResume = useCallback(async (sessionId: string) => {
-    const session = await window.flowforge.session.load(sessionId)
+    const session = await window.archon.session.load(sessionId)
     if (session) {
       setSession(session)
     }
@@ -79,7 +79,7 @@ function App(): JSX.Element {
   }, [reset])
 
   useEffect(() => {
-    const unsubscribe = window.flowforge.onCheckpoint((checkpoint) => {
+    const unsubscribe = window.archon.onCheckpoint((checkpoint) => {
       const cp = checkpoint as Checkpoint
       addCheckpoint(cp)
       setPendingCheckpoint(cp)
@@ -88,13 +88,13 @@ function App(): JSX.Element {
   }, [addCheckpoint])
 
   const handleApprove = async (checkpointId: string): Promise<void> => {
-    await window.flowforge.checkpoint.approve(checkpointId)
+    await window.archon.checkpoint.approve(checkpointId)
     resolveCheckpoint(checkpointId, 'approved')
     setPendingCheckpoint(null)
   }
 
   const handleReject = async (checkpointId: string, feedback: string): Promise<void> => {
-    await window.flowforge.checkpoint.reject(checkpointId, feedback)
+    await window.archon.checkpoint.reject(checkpointId, feedback)
     resolveCheckpoint(checkpointId, 'rejected')
     setPendingCheckpoint(null)
   }

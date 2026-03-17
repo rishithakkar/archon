@@ -4,7 +4,7 @@ import {
   architecturePrompt,
   claudeMdPrompt,
   planGeneratorPrompt
-} from '@flowforge/prompt-templates'
+} from '@archon/prompt-templates'
 
 let client: Anthropic | null = null
 

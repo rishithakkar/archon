@@ -6,7 +6,7 @@ export function TopBar() {
   return (
     <div className="flex h-12 items-center justify-between border-b border-gray-800 bg-gray-950 px-4">
       <div className="flex items-center gap-2">
-        <span className="text-lg font-bold text-purple-400">FlowForge</span>
+        <span className="text-lg font-bold text-purple-400">Archon</span>
       </div>
 
       <div className="text-sm text-gray-400">

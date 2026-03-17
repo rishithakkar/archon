@@ -42,7 +42,7 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.flowforge')
+  electronApp.setAppUserModelId('com.archon')
 
   initDatabase()
   registerIpcHandlers()

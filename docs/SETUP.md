@@ -1,4 +1,4 @@
-# FlowForge Setup Guide
+# Archon Setup Guide
 
 ## Prerequisites
 
@@ -10,8 +10,8 @@
 ## Installation
 
 ```bash
-git clone <repo-url> flowforge
-cd flowforge
+git clone <repo-url> archon
+cd archon
 npm install
 ```
 

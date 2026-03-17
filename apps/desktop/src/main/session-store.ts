@@ -1,14 +1,14 @@
 import Database from 'better-sqlite3'
 import { app } from 'electron'
 import { join } from 'path'
-import { Stage } from '@flowforge/shared-types'
-import type { SessionState, Checkpoint, Artifact } from '@flowforge/shared-types'
+import { Stage } from '@archon/shared-types'
+import type { SessionState, Checkpoint, Artifact } from '@archon/shared-types'
 import { randomUUID } from 'crypto'
 
 let db: Database.Database
 
 export function initDatabase(): void {
-  const dbPath = join(app.getPath('userData'), 'flowforge.db')
+  const dbPath = join(app.getPath('userData'), 'archon.db')
   db = new Database(dbPath)
   db.pragma('journal_mode = WAL')
   db.pragma('foreign_keys = ON')
