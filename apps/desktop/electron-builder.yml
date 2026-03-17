@@ -1,0 +1,49 @@
+appId: com.flowforge.app
+productName: FlowForge
+directories:
+  buildResources: build
+  output: dist
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.*'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - out/**/*
+asarUnpack:
+  - '**/*.{node,dll}'
+  - node_modules/better-sqlite3/**
+  - node_modules/node-pty/**
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  executableName: FlowForge
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: FlowForge
+  uninstallDisplayName: FlowForge
+  deleteAppDataOnUninstall: false
+mac:
+  target:
+    - target: dmg
+    - target: zip
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSDocumentsFolderUsageDescription: Application needs access to the user's Documents folder.
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  maintainer: flowforge
+  category: Development
+appImage:
+  artifactName: ${name}-${version}.${ext}
+publish:
+  provider: github
+  owner: flowforge
+  repo: flowforge

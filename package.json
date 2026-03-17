@@ -1,0 +1,23 @@
+{
+  "name": "flowforge",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @flowforge/desktop",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "build:win": "turbo run build && cd apps/desktop && npx electron-builder --win",
+    "build:mac": "turbo run build && cd apps/desktop && npx electron-builder --mac",
+    "build:linux": "turbo run build && cd apps/desktop && npx electron-builder --linux"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^20.14.0"
+  }
+}
